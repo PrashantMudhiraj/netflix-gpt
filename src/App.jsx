@@ -1,13 +1,20 @@
-import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router";
 
-function App() {
-    return (
-        <>
-            <div className="text-3xl text-center font-bold text-green-600 bg-amber-100">
-                hello
-            </div>
-        </>
-    );
-}
+import Body from "./components/Body";
+import Browse from "./components/Browse";
+
+const App = () => {
+    const appRouter = createBrowserRouter([
+        {
+            path: "/",
+            element: <Body />,
+        },
+        {
+            path: "browse",
+            element: <Browse />,
+        },
+    ]);
+    return <RouterProvider router={appRouter} />;
+};
 
 export default App;
