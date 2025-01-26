@@ -1,12 +1,70 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+} from "firebase/auth";
+
 import Header from "./Header";
+import { validateFormData } from "../utils/validate";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
     const [isSignForm, setIsSignInForm] = useState(true);
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    const email = useRef(null);
+    const password = useRef(null);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const message = validateFormData(
+            email.current.value,
+            password.current.value
+        );
+        setErrorMessage(message);
+        if (message) return;
+        if (!isSignForm) {
+            createUserWithEmailAndPassword(
+                auth,
+                email.current.value,
+                password.current.value
+            )
+                .then((userCredential) => {
+                    // Signed up
+                    const user = userCredential.user;
+                    console.log(user);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(error);
+                    setErrorMessage(errorCode + "-" + errorMessage);
+                });
+        } else {
+            signInWithEmailAndPassword(
+                auth,
+                email.current.value,
+                password.current.value
+            )
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    console.log(user);
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    setErrorMessage(errorCode + "-" + errorMessage);
+                });
+        }
+    };
 
     const toggleSignInForm = () => {
         setIsSignInForm(!isSignForm);
     };
+
     return (
         <div>
             <Header />
@@ -16,7 +74,7 @@ const Login = () => {
                     alt=""
                 />
             </div>
-            <form className="w-3/12 absolute  p-10 bg-gray-950/80 my-30 mx-auto right-0 left-0 text-white rounded-sm">
+            <form className="w-4/14 absolute  p-10 bg-gray-950/85 my-30 mx-auto right-0 left-0 text-white rounded-sm">
                 <h1 className="font-bold text-2xl py-4">
                     {isSignForm ? "Sign In" : "Sign Up"}
                 </h1>
@@ -30,24 +88,32 @@ const Login = () => {
                 )}
 
                 <input
+                    ref={email}
                     type="text"
                     name="email"
                     placeholder="Email Address"
                     className="p-4 my-4 w-full bg-gray-700/80 rounded-lg"
                 />
                 <input
-                    type="text"
+                    ref={password}
+                    type="password"
                     name="password"
                     placeholder="password"
                     className="p-4 my-4 w-full bg-gray-700/80 rounded-lg"
                 />
-                <button className="p-4 my-6 bg-red-700 w-full rounded-lg">
+                {errorMessage && (
+                    <p className="font-bold text-red-400">{errorMessage}</p>
+                )}
+                <button
+                    className="p-4 my-6 bg-red-700 w-full rounded-lg"
+                    onClick={handleSubmit}
+                >
                     {isSignForm ? "Sign In" : "Sign Up"}
                 </button>
                 <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
                     {isSignForm
                         ? "New to Netflix ? Sign Up Now"
-                        : "Already Registered Sign In"}
+                        : "Already Registered ? Sign In"}
                 </p>
             </form>
         </div>
