@@ -11,6 +11,9 @@
 -   Firebase setup
 -   deploying app in firebase
 -   Auth setup
+-   Redux
+    -   npm i -D @reduxjs/toolkit
+    -   npm i -D react-redux
 
 # Features
 

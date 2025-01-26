@@ -1,19 +1,24 @@
 import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    updateProfile,
 } from "firebase/auth";
 
 import Header from "./Header";
 import { validateFormData } from "../utils/validate";
 import { auth } from "../utils/firebase";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
     const [isSignForm, setIsSignInForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
+    const dispatch = useDispatch();
 
     const email = useRef(null);
     const password = useRef(null);
+    const name = useRef(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -33,6 +38,19 @@ const Login = () => {
                 .then((userCredential) => {
                     // Signed up
                     const user = userCredential.user;
+                    updateProfile(user, {
+                        displayName: name.current.value,
+                        photoURL: null,
+                    })
+                        .then(() => {
+                            const { uid, email, displayName } =
+                                auth.currentUser;
+                            dispatch(addUser({ uid, email, displayName }));
+                            console.log("profile Updated");
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
                     console.log(user);
                 })
                 .catch((error) => {
@@ -80,6 +98,7 @@ const Login = () => {
                 </h1>
                 {!isSignForm && (
                     <input
+                        ref={name}
                         type="text"
                         name="fullname"
                         placeholder="Full Name"
