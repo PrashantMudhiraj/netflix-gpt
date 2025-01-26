@@ -18,6 +18,10 @@ const App = () => {
             path: "error",
             element: <Error />,
         },
+        {
+            path: "*",
+            element: <Error />,
+        },
     ]);
     return <RouterProvider router={appRouter} />;
 };

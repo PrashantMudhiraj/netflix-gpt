@@ -10,6 +10,7 @@ import Header from "./Header";
 import { validateFormData } from "../utils/validate";
 import { auth } from "../utils/firebase";
 import { addUser } from "../utils/userSlice";
+import appConstants from "../utils/appConstants";
 
 const Login = () => {
     const [isSignForm, setIsSignInForm] = useState(true);
@@ -51,7 +52,6 @@ const Login = () => {
                         .catch((error) => {
                             console.log(error.message);
                         });
-                    console.log(user);
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -87,10 +87,7 @@ const Login = () => {
         <div>
             <Header />
             <div className="absolute">
-                <img
-                    src="https://assets.nflxext.com/ffe/siteui/vlv3/7a8c0067-a424-4e04-85f8-9e25a49a86ed/web/IN-en-20250120-TRIFECTA-perspective_860a95da-c386-446e-af83-fef8ddd80803_large.jpg"
-                    alt=""
-                />
+                <img src={appConstants.netflix_bg} alt="" />
             </div>
             <form className="w-4/14 absolute  p-10 bg-gray-950/85 my-30 mx-auto right-0 left-0 text-white rounded-sm">
                 <h1 className="font-bold text-2xl py-4">

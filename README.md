@@ -14,6 +14,8 @@
 -   Redux
     -   npm i -D @reduxjs/toolkit
     -   npm i -D react-redux
+-   Browse Page
+    -
 
 # Features
 
