@@ -43,7 +43,7 @@ const Header = () => {
     };
 
     return (
-        <div className=" absolute w-screen px-8 py-2 bg-gradient-to-b  from-black z-10 flex justify-between sticky">
+        <div className=" absolute w-screen px-8 py-2 bg-gradient-to-b  from-black z-10 flex justify-between">
             <img
                 src={appConstants.netflix_logo}
                 className="w-44 my-1 mx-5"
@@ -56,7 +56,7 @@ const Header = () => {
                         className="w-10 h-10 mx-4 rounded-full"
                     />
                     <button
-                        className=" h-10 cursor-pointer pt-2 hover:text-gray-200"
+                        className=" h-10 cursor-pointer hover:bg-gray-400 bg-gray-100/70 px-3 rounded-2xl"
                         onClick={handleSignOut}
                     >
                         Sign out
