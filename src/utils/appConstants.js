@@ -17,6 +17,7 @@ const appConstants = {
             Authorization: `Bearer ${import.meta.env.VITE_TMDB_AUTH_TOKEN}`,
         },
     },
+    imdb_image: "https://image.tmdb.org/t/p/w500/",
 };
 
 export default appConstants;

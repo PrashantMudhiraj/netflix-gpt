@@ -8,7 +8,7 @@ const VideoBackground = ({ movie_id }) => {
     return (
         <div className="w-screen h-screen">
             <iframe
-                className="w-screen aspect-video"
+                className="w-screen  h-screen"
                 src={
                     "https://www.youtube.com/embed/" +
                     movieData?.key +
