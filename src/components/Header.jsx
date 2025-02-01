@@ -63,7 +63,7 @@ const Header = () => {
                         onClick={handleChangeLang}
                     >
                         {appConstants.supported_languages.map((lang) => (
-                            <option id={lang.value} value={lang.value}>
+                            <option key={lang.value} value={lang.value}>
                                 {lang.name}
                             </option>
                         ))}

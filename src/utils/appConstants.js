@@ -10,6 +10,8 @@ const appConstants = {
 
     imdb_trailer_api: (movie_id) =>
         `https://api.themoviedb.org/3/movie/${movie_id}/videos`,
+    imdb_movie_api: (movie) =>
+        `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
     options: {
         method: "GET",
         headers: {
@@ -42,6 +44,7 @@ const appConstants = {
             placeholder: "¿Qué te gustaría ver?",
         },
     },
+    open_ai_key: import.meta.env.VITE_OPEN_API_KEY,
 };
 
 export default appConstants;

@@ -3,6 +3,7 @@ import appConstants from "../utils/appConstants";
 
 const MovieCard = ({ movies }) => {
     const { poster_path } = movies;
+    if (!poster_path) return null;
     return (
         <div className="w-40 pr-4 ">
             <img

@@ -1,10 +1,9 @@
 import React from "react";
 import MovieCard from "./MovieCard";
-import { useSelector } from "react-redux";
 
-const MovieList = ({ title }) => {
-    const movieList = useSelector((store) => store.movies.nowPlayingMovies);
-    // console.log(movieList);
+const MovieList = ({ title, movieList }) => {
+    if (!movieList) return null;
+
     return (
         <div className="p-6">
             <h2 className="text-white text-2xl pb-2">{title}</h2>
