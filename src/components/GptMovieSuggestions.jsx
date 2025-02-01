@@ -6,7 +6,7 @@ const GptMovieSuggestions = () => {
 
     if (!MovieNames) return null;
     return (
-        <div className="bg-black/90">
+        <div className="bg-black/80">
             {idmbMoviesList.map((movie, index) => {
                 return (
                     <MoviesList

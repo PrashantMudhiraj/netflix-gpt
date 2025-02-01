@@ -25,7 +25,6 @@ async function openaiGpt(input) {
     const prompt = input;
 
     const result = await model.generateContent(prompt);
-    console.log(result.response.text());
 
     return result.response.text();
 }

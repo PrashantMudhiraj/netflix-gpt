@@ -5,7 +5,7 @@ import GptMovieSuggestions from "./GptMovieSuggestions";
 const GPTSearch = () => {
     return (
         <div>
-            <div className=" absolute -z-10">
+            <div className=" fixed -z-10">
                 <img src={appConstants.netflix_bg} alt="bg" />
             </div>
 
