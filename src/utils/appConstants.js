@@ -18,6 +18,30 @@ const appConstants = {
         },
     },
     imdb_image: "https://image.tmdb.org/t/p/w500/",
+    supported_languages: [
+        { name: "English", value: "en" },
+        { name: "Hindi", value: "hindi" },
+        { name: "Telugu", value: "tel" },
+        { name: "Spanish", value: "spanish" },
+    ],
+    languages: {
+        en: {
+            search: "Search",
+            placeholder: "What would you like to watch",
+        },
+        tel: {
+            search: "శోధించండి",
+            placeholder: "మీరు ఏమి చూడాలనుకుంటున్నారు",
+        },
+        hindi: {
+            search: "खोज",
+            placeholder: "आप क्या देखना चाहेंगे",
+        },
+        spanish: {
+            search: "buscar",
+            placeholder: "¿Qué te gustaría ver?",
+        },
+    },
 };
 
 export default appConstants;
